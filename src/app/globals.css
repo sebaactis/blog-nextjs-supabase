@@ -31,3 +31,11 @@ body {
     text-wrap: balance;
   }
 }
+
+.imagenStyle {
+  background-image: url('../../public/imagen-login.jpeg');
+  background-size: cover;
+  background-position: center;
+  width: 750px;
+
+}
