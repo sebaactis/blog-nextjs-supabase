@@ -1,4 +1,4 @@
-import { AuthButtonServer } from '@/app/components/auth-button-server'
+import { AuthButtonServer } from '@/components/auth-button-server'
 import { redirect } from 'next/navigation'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'

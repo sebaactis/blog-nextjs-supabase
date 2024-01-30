@@ -1,7 +1,6 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import AuthButtonClient from './auth-button-client'
-import FormLogin from './auth-form-client'
 
 export async function AuthButtonServer() {
     const supabase = createServerComponentClient({ cookies })
@@ -9,8 +8,7 @@ export async function AuthButtonServer() {
 
     return (
 
-        <section className={` ${session !== null ? '' : 'bg-blue-900 p-20 flex flex-col rounded-r-md'} `}>
-            <FormLogin session={session} />
+        <section className={` ${session !== null ? '' : 'bg-blue-900 p-40 flex flex-col rounded-r-md'} `}>
             <AuthButtonClient session={session} />
         </section>
     )

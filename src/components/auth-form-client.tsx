@@ -1,6 +1,6 @@
 'use client'
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { type Session, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
@@ -11,7 +11,7 @@ export default function FormLogin({ session }: { session: Session | null }) {
     const [password, setPassword] = useState<string>('')
 
     const handleSignUp = async () => {
-        await supabase.auth.signUp({
+       const create = await supabase.auth.signUp({
             email,
             password,
             options: {
@@ -19,6 +19,7 @@ export default function FormLogin({ session }: { session: Session | null }) {
             }
         })
         router.refresh()
+        console.log(create)
     }
 
     const handleSignIn = async () => {

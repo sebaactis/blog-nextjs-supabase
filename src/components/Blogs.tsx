@@ -1,4 +1,3 @@
-import React from 'react'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from '@nextui-org/react'
@@ -28,16 +27,15 @@ export default async function Blogs() {
                             </CardHeader>
                             <Divider />
                             <CardBody>
-                                <p>{post.content}</p>
+                                <p>{post.title}</p>
                             </CardBody>
                             <Divider />
                             <CardFooter>
                                 <Link
-                                    isExternal
                                     showAnchorIcon
-                                    href="https://github.com/nextui-org/nextui"
+                                    href={`/blogs/details?id=${post.id}`}
                                 >
-                                    Visit source code on GitHub.
+                                    Ver el blog en detalle
                                 </Link>
                             </CardFooter>
                         </Card>

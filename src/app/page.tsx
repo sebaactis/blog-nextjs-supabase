@@ -1,8 +1,8 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
-import { AuthButtonServer } from './components/auth-button-server'
-import Blogs from './components/Blogs'
+import { AuthButtonServer } from '../components/auth-button-server'
+import Blogs from '../components/Blogs'
 
 const supabase = createServerComponentClient({ cookies })
 
