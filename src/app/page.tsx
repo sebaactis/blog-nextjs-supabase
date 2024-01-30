@@ -2,7 +2,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { AuthButtonServer } from '../components/auth-button-server'
-import Blogs from '../components/Blogs'
+import BlogsContainer from '../components/BlogsContainer'
 
 const supabase = createServerComponentClient({ cookies })
 
@@ -16,7 +16,7 @@ export default async function Home() {
   return (
     <>
       <main className="flex min-h-screen flex-col items-center justify-between">
-        <Blogs />
+        <BlogsContainer />
       </main>
       <footer className="bg-gray-800 flex justify-center items-center p-3">
         <AuthButtonServer />
