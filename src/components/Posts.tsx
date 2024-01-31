@@ -21,14 +21,14 @@ export default function Posts() {
                 .from('posts')
                 .select('*, users(*)')
 
-            const countDataLength = count.data?.length ?? 0
+            const totalPosts = count.data?.length ?? 0
 
             const { data } = await supabase
                 .from('posts')
                 .select('*, users(*)')
                 .range((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE - 1)
 
-            setTotalPages(countDataLength)
+            setTotalPages(Math.ceil(totalPosts / ITEMS_PER_PAGE))
             setPosts(data)
         }
 

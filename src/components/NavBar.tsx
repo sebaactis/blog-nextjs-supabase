@@ -1,4 +1,5 @@
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/react'
+import Link from 'next/link'
 
 export function NavBar() {
     return (
@@ -11,6 +12,7 @@ export function NavBar() {
                     <NavbarItem>
                         <p className="text-black"> Varios Blogs hechos con NextJS </p>
                     </NavbarItem>
+                    <Link href="blogs/create"><button> Create NEW </button> </Link>
                 </NavbarContent>
             </Navbar>
         </nav>
