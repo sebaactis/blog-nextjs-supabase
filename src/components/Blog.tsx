@@ -3,7 +3,7 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import Loader from './blog-loader'
-import { Button } from '@nextui-org/react'
+import { Button, Divider } from '@nextui-org/react'
 import Link from 'next/link'
 import { Oswald } from 'next/font/google'
 import { IconBrandGithub } from '@tabler/icons-react'
@@ -13,18 +13,29 @@ const supabase = createClientComponentClient()
 
 export default function Blog({ id }: { id: string | null }) {
     const [blog, setBlog] = useState<any | null>(null)
+    const [blogs, setBlogs] = useState<any | null>(null)
 
     useEffect(() => {
         const fetchBlog = async () => {
             setTimeout(async () => {
                 const response = await supabase.from('posts').select('*, users(user_name, avatar_url)').eq('id', id)
                 const blog = response.data !== null && response.data.length > 0 ? response.data[0] : null
-                console.log(blog.users)
                 setBlog(blog)
             }, 200)
         }
 
+        const fetchBlogs = async () => {
+            const queryUserId = await supabase.from('posts').select('*, users(user_name, avatar_url)').eq('id', id)
+            console.log(queryUserId)
+            const user = queryUserId.data !== null && queryUserId.data.length > 0 ? queryUserId.data[0].user_id : null
+
+            const response = await supabase.from('posts').select('*, users(user_name, avatar_url)').eq('user_id', user).order('created_at', { ascending: false }).limit(4)
+            const blogs = response.data !== null && response.data.length > 0 ? response.data : null
+            setBlogs(blogs)
+        }
+
         fetchBlog()
+        fetchBlogs()
     }, [id])
 
 
@@ -46,7 +57,6 @@ export default function Blog({ id }: { id: string | null }) {
                         <p className="text-md text-center max-w-[500px] pb-[10rem] h-fit">{blog.content}</p>
                     </article>
                     <article className="max-w-[300px] h-[500px] relative border">
-
                         <img
                             className="rounded-sm h-fit"
                             alt="nextui logo"
@@ -58,6 +68,18 @@ export default function Blog({ id }: { id: string | null }) {
                             <h1 className="text-md font-bold">{blog.users.user_name}</h1>
                             <Link href={`https://github.com/${blog.users.user_name}`} target='blank'><IconBrandGithub className="border border-black rounded-full w-[40px] h-[40px] p-1 hover:bg-indigo-400 hover:border-indigo-400 transition" /></Link>
                         </div>
+
+                        <article className="max-w-[300px] h-[300px] border mt-[350px] flex flex-col text-center justify-between">
+                            {blogs.map((blog: any) => {
+                                return (
+                                    <div key={blog.id}>
+                                        {blog.title}
+                                        <Divider />
+                                    </div>
+                                )
+                            })}
+                        </article>
+
                     </article>
                 </section>
                 : <Loader />}
