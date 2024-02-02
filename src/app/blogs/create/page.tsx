@@ -13,12 +13,8 @@ export function Page() {
         const { data: { session } } = await supabase.auth.getSession()
         const user = session?.user.id
 
-        console.log(user)
-
         const title = formData.get('title')
         const content = formData.get('content')
-
-        console.log(title, content)
 
         if (title === '' || content === '') return
 
