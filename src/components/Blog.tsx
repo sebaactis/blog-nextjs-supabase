@@ -5,7 +5,10 @@ import { useEffect, useState } from 'react'
 import Loader from './blog-loader'
 import { Button } from '@nextui-org/react'
 import Link from 'next/link'
+import { Oswald } from 'next/font/google'
+import { IconBrandGithub } from '@tabler/icons-react'
 
+const oswald = Oswald({ subsets: ['latin'] })
 const supabase = createClientComponentClient()
 
 export default function Blog({ id }: { id: string | null }) {
@@ -16,6 +19,7 @@ export default function Blog({ id }: { id: string | null }) {
             setTimeout(async () => {
                 const response = await supabase.from('posts').select('*, users(user_name, avatar_url)').eq('id', id)
                 const blog = response.data !== null && response.data.length > 0 ? response.data[0] : null
+                console.log(blog.users)
                 setBlog(blog)
             }, 200)
         }
@@ -23,27 +27,36 @@ export default function Blog({ id }: { id: string | null }) {
         fetchBlog()
     }, [id])
 
+
     return (
         <>
             {blog !== null
-                ? <section className="bg-transparent flex flex-col justify-between mt-20 border border-transparent rounded-md w-2/6 m-auto shadow-lg shadow-cyan-300">
-                    <img
-                        className="rounded-sm w-screen"
-                        alt="nextui logo"
-                        src="https://i.blogs.es/09b647/googlefotos/840_560.jpg"
-                    />
-                    <article className="flex flex-col mx-auto">
-                        <div className="flex flex-row items-center gap-2 mt-3">
-                            <h1 className="text-md ml-2">Written by: <span className="font-bold">{blog.users.user_name}</span></h1>
-                            <img className="rounded-full" src={blog.users.avatar_url} alt='foto de github' width={25} height={25} />
+                ? <section className="grid grid-cols-[70%_30%]  mt-[10rem] mb-20">
+                    <article className="m-auto flex flex-col items-center border rounded-md">
+                        <div className="flex flex-col items-center pb-[50px] w-[700px]">
+                            <img
+                                className="rounded-sm h-fit"
+                                alt="nextui logo"
+                                src="https://i.blogs.es/09b647/googlefotos/840_560.jpg"
+                            />
+                            <div >
+                                <h1 className={`text-2xl mt-6 text-wrap text-center uppercase ${oswald.className}`}>{blog.title}</h1>
+                            </div>
                         </div>
-                        <div className="flex flex-row p-2 mb-2">
-                            <h1 className="text-2xl font-bold text-wrap max-w-screen-sm text-center mt-10">{blog.title}</h1>
-                        </div>
+                        <p className="text-md text-center max-w-[500px] pb-[10rem] h-fit">{blog.content}</p>
                     </article>
-                    <article className=" flex flex-col mx-auto w-4/6">
-                        <div className="mt-10 mb-36 flex">
-                            <p className="text-xl text-center">{blog.content}</p>
+                    <article className="max-w-[300px] h-[500px] relative border">
+
+                        <img
+                            className="rounded-sm h-fit"
+                            alt="nextui logo"
+                            src="https://i.blogs.es/09b647/googlefotos/840_560.jpg"
+                            width={300}
+                        />
+                        <div className="w-fit h-fit flex flex-col items-center gap-5 absolute top-[160px] left-[75px]">
+                            <img className="rounded-full border" src={blog.users.avatar_url} alt='foto de github' width={150} height={150} />
+                            <h1 className="text-md font-bold">{blog.users.user_name}</h1>
+                            <Link href={`https://github.com/${blog.users.user_name}`} target='blank'><IconBrandGithub className="border border-black rounded-full w-[40px] h-[40px] p-1 hover:bg-indigo-400 hover:border-indigo-400 transition" /></Link>
                         </div>
                     </article>
                 </section>
