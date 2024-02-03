@@ -13,6 +13,7 @@
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/supabase-js": "^2.39.3",
     "@tabler/icons-react": "^2.46.0",
+    "date-fns": "^3.3.1",
     "framer-motion": "^11.0.3",
     "next": "14.1.0",
     "react": "^18",
