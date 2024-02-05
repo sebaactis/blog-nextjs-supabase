@@ -12,7 +12,7 @@ export function NavBar() {
                     <NavbarItem>
                         <p className="text-black"> Varios Blogs hechos con NextJS </p>
                     </NavbarItem>
-                    <Link href="blogs/create"><button> Create NEW </button> </Link>
+                    <Link href="http://localhost:3000/blogs/create"><button className="border p-2 rounded-lg bg-rose-400 hover:bg-rose-500 transition font-bold border-transparent"> Create NEW </button> </Link>
                 </NavbarContent>
             </Navbar>
         </nav>

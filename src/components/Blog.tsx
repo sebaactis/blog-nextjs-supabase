@@ -5,17 +5,16 @@ import { useEffect, useState } from 'react'
 import Loader from './blog-loader'
 import { Button, Divider } from '@nextui-org/react'
 import Link from 'next/link'
-import { Oswald } from 'next/font/google'
 import { IconBrandGithub } from '@tabler/icons-react'
 import { formatearFecha } from '@/utils/format-date'
 import { type Post } from '@/types/database'
 
-const oswald = Oswald({ subsets: ['latin'] })
 const supabase = createClientComponentClient()
 
 export default function Blog({ id }: { id: string | null }) {
     const [blog, setBlog] = useState<Post | null>(null)
     const [blogs, setBlogs] = useState<Post[] | null>(null)
+    const fecha = formatearFecha(blog?.created_at)
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -39,7 +38,6 @@ export default function Blog({ id }: { id: string | null }) {
         fetchBlogs()
     }, [id])
 
-
     return (
         <>
             {blog !== null
@@ -49,10 +47,10 @@ export default function Blog({ id }: { id: string | null }) {
                             <img
                                 className="rounded-sm h-fit"
                                 alt="nextui logo"
-                                src="https://i.blogs.es/09b647/googlefotos/840_560.jpg"
+                                src={blog.imageUrl}
                             />
                             <div>
-                                <h1 className={`text-2xl mt-6 text-wrap text-center uppercase ${oswald.className}`}>{blog.title}</h1>
+                                <h1 className="text-2xl mt-6 text-wrap text-center uppercase">{blog.title}</h1>
                             </div>
                         </div>
                         <p className="text-md text-center max-w-[500px] pb-[10rem] h-fit">{blog.content}</p>
@@ -62,12 +60,12 @@ export default function Blog({ id }: { id: string | null }) {
                             </Link>
                         </div>
                     </article>
-                    <aside className="max-w-[300px] h-[500px] relative border">
+                    <aside className="max-w-[280px] h-[500px] relative border">
                         <img
-                            className="rounded-sm h-fit"
+                            className="rounded-sm h-fit blur-[2px]"
                             alt="nextui logo"
-                            src="https://i.blogs.es/09b647/googlefotos/840_560.jpg"
-                            width={300}
+                            src={blog.users.avatar_url}
+                            width={280}
                         />
                         <div className="w-fit h-fit flex flex-col items-center gap-5 absolute top-[160px] left-[75px]">
                             <img className="rounded-full border" src={blog.users.avatar_url} alt='foto de github' width={150} height={150} />
@@ -79,7 +77,6 @@ export default function Blog({ id }: { id: string | null }) {
                             <h3 className="text-center py-5">Other Posts</h3>
                             <Divider />
                             {blogs?.map((blog: Post) => {
-                                const fecha = formatearFecha(blog.created_at)
                                 return (
                                     <>
 
@@ -87,13 +84,13 @@ export default function Blog({ id }: { id: string | null }) {
                                             <img
                                                 className="rounded-sm"
                                                 alt="nextui logo"
-                                                src="https://i.blogs.es/09b647/googlefotos/840_560.jpg"
+                                                src={blog.imageUrl}
                                                 width={120}
                                                 height={120}
                                             />
                                             <div>
-                                                <Link target='_blank' href={`http://localhost:3000/blogs/details?id=${blog.id}`}>
-                                                    <p className={`${oswald.className} text-lg hover:text-indigo-600 transition`}>{blog.title}</p>
+                                                <Link href={`http://localhost:3000/blogs/details?id=${blog.id}`}>
+                                                    <p className="text-lg hover:text-indigo-600 transition">{blog.title}</p>
                                                 </Link>
                                                 <p>{fecha}</p>
                                             </div>

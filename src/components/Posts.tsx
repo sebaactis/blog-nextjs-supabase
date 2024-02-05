@@ -1,7 +1,8 @@
 'use client'
 
 import { type Post } from '@/types/database'
-import { Divider, Link, Image, Button } from '@nextui-org/react'
+import { formatearFecha } from '@/utils/format-date'
+import { Link, Image, Button } from '@nextui-org/react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { IconCircleArrowLeft, IconCircleArrowRight } from '@tabler/icons-react'
 import { useEffect, useState } from 'react'
@@ -13,7 +14,6 @@ export default function Posts() {
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
     const [posts, setPosts] = useState<Post[] | null>([])
-
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -41,21 +41,24 @@ export default function Posts() {
 
     return (
         <>
-            <section className="grid grid-cols-3 gap-10 mt-5">
+            <section className="grid grid-cols-3 gap-20 mt-5">
                 {posts !== null
                     ? posts.map((post) => (
-                        <article className="flex flex-col w-72 gap-5 border border-transparent rounded-lg pb-3 justify-between shadow-lg shadow-cyan-300" key={post.id}>
+                        <article className="flex flex-col w-72 gap-2 border border-transparent rounded-lg pb-4 justify-between" key={post.id}>
                             <img
-                                className="rounded-lg"
+                                className="rounded-lg max-w-[300px] max-h-[200px]"
                                 alt="nextui logo"
                                 src={post.imageUrl}
                             />
-                            <Divider />
-                            <div className="text-lg text-center font-bold">
+                            <div className="flex gap-1 mb-1">
+                                <p className="font-bold">{post.category}</p>
+
+                                <p>⎼ {formatearFecha(post.created_at)}</p>
+                            </div>
+                            <div className="text-md font-bold mb-1">
                                 <p>{post.title}</p>
                             </div>
-                            <Divider />
-                            <div className="flex items-center justify-between mx-2">
+                            <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
                                     <Image
                                         alt="avatur_url github"
@@ -72,7 +75,7 @@ export default function Posts() {
                                 <Link className="mb-2"
                                     href={`/blogs/details?id=${post.id}`}
                                 >
-                                    <Button color="primary">Leer articulo</Button>
+                                    <Button className="bg-indigo-500 text-white hover:bg-indigo-600 transition">Leer articulo</Button>
                                 </Link>
                             </div>
                         </article>

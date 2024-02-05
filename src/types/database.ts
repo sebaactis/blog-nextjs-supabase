@@ -14,6 +14,7 @@ export interface Post {
   user_id: string
   title: string
   imageUrl: string
+  category: string
   users: {
     id: string
     user_name: string

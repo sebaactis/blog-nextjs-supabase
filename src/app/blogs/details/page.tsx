@@ -4,7 +4,7 @@ import Blog from '@/components/Blog'
 import { useSearchParams } from 'next/navigation'
 
 
-export default function Page() {
+export default async function Page() {
     const params = useSearchParams()
     const id = params.get('id')
 
