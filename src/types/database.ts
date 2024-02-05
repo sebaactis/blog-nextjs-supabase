@@ -13,6 +13,7 @@ export interface Post {
   content: string
   user_id: string
   title: string
+  imageUrl: string
   users: {
     id: string
     user_name: string

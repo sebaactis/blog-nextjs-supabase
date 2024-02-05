@@ -48,7 +48,7 @@ export default function Posts() {
                             <img
                                 className="rounded-lg"
                                 alt="nextui logo"
-                                src="https://i.blogs.es/09b647/googlefotos/840_560.jpg"
+                                src={post.imageUrl}
                             />
                             <Divider />
                             <div className="text-lg text-center font-bold">
