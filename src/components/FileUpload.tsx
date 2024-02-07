@@ -34,7 +34,7 @@ const FileUpload = ({ setImageUrl }: { setImageUrl: (url: string) => void }) => 
 
     return (
         <div className="flex flex-col items-center gap-4 border p-2 rounded-md bg-default-100 border-transparent">
-            <input type="file" name='file' onChange={(e) => {
+            <input type="file" name='imageUrl' onChange={(e) => {
                 if (e.target.files?.length !== 0 && e.target.files !== null) {
                     setFile(e.target.files[0])
                 }
