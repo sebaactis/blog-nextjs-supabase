@@ -6,14 +6,16 @@ import { Link, Image, Button } from '@nextui-org/react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { IconCircleArrowLeft, IconCircleArrowRight } from '@tabler/icons-react'
 import { useEffect, useState } from 'react'
+import ImageGrid from './main-loader'
 
 const supabase = createClientComponentClient()
 const ITEMS_PER_PAGE = 6
 
 export default function Posts() {
-    const [page, setPage] = useState(1)
-    const [totalPages, setTotalPages] = useState(1)
+    const [page, setPage] = useState<number>(1)
+    const [totalPages, setTotalPages] = useState<number>(1)
     const [posts, setPosts] = useState<Post[] | null>([])
+    const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -30,6 +32,7 @@ export default function Posts() {
 
             setTotalPages(Math.ceil(totalPosts / ITEMS_PER_PAGE))
             setPosts(data)
+            setLoading(false)
         }
 
         fetchPosts()
@@ -39,6 +42,13 @@ export default function Posts() {
         setPage(newPage)
     }
 
+    if (loading) {
+        return (
+            <>
+                <ImageGrid />
+            </>
+        )
+    }
     return (
         <>
             <section className="grid grid-cols-3 gap-20 mt-5">
@@ -86,7 +96,6 @@ export default function Posts() {
 
             {totalPages >= 0 && (
                 <div className="gap-4 flex justify-center mb-10">
-                    {/* Puedes implementar tus propios componentes de paginación o simplemente usar botones */}
                     <button onClick={() => { handlePageChange(page - 1) }} disabled={page === 1}>
                         {page === 1 ? <IconCircleArrowLeft className="w-6 h-6" color='#49566c' /> : <IconCircleArrowLeft className="w-6 h-6" />}
                     </button>

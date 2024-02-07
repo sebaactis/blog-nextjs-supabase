@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { type FormEvent, useState } from 'react'
 
 const cloudinaryCloudName = 'dmiwggr2n'
 
@@ -7,7 +7,7 @@ const FileUpload = ({ setImageUrl }: { setImageUrl: (url: string) => void }) => 
     const [file, setFile] = useState<File | null>(null)
     const [showUrlImage, setShowUrlImage] = useState<string | undefined>(undefined)
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
 
         const cloudurl = `https://api.cloudinary.com/v1_1/${cloudinaryCloudName}/image/upload`

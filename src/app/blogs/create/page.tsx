@@ -3,7 +3,7 @@
 import { Input, Textarea } from '@nextui-org/react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import FileUpload from '@/components/FileUpload'
-import { useState } from 'react'
+import { type FormEvent, useState } from 'react'
 import Link from 'next/link'
 import Swal from 'sweetalert2'
 
@@ -15,7 +15,7 @@ export function Page() {
     const [content, setContent] = useState<string | null>()
     const [imageUrl, setImageUrl] = useState<string | null>()
 
-    const addBlog = async (e: any) => {
+    const addBlog = async (e: FormEvent) => {
         try {
             e.preventDefault()
 

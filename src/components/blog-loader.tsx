@@ -1,33 +1,20 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 
-const Loader = () => (
-    <ContentLoader
-        speed={2}
-        width={700}
-        height={300}
-        viewBox="0 0 700 300"
-        backgroundColor="#f5f5f5"
-        foregroundColor="#dbdbdb"
-
-    >
-        <rect x="12" y="35" rx="0" ry="0" width="6" height="246" />
-        <rect x="14" y="34" rx="0" ry="0" width="408" height="6" />
-        <rect x="416" y="34" rx="0" ry="0" width="6" height="246" />
-        <rect x="12" y="276" rx="0" ry="0" width="408" height="6" />
-        <rect x="150" y="53" rx="6" ry="6" width="127" height="15" />
-        <rect x="37" y="77" rx="7" ry="7" width="361" height="139" />
-        <rect x="58" y="225" rx="0" ry="0" width="316" height="8" />
-        <rect x="86" y="238" rx="0" ry="0" width="267" height="8" />
-        <rect x="58" y="252" rx="0" ry="0" width="316" height="8" />
+const BlogItem = () => (
+    <ContentLoader viewBox="0 0 500 280" height={500} width={1700}>
+        <rect x="3" y="3" rx="10" ry="10" width="300" height="180" />
+        <rect x="6" y="190" rx="0" ry="0" width="292" height="20" />
+        <rect x="4" y="215" rx="0" ry="0" width="239" height="20" />
+        <rect x="4" y="242" rx="0" ry="0" width="274" height="20" />
     </ContentLoader>
 )
 
-Loader.metadata = {
-    name: 'Nitish Sharma',
-    github: 'Nitz2611',
-    description: 'Category with image and description',
-    filename: 'CategoryLoader'
+BlogItem.metadata = {
+    name: 'RJavlonbek',
+    github: 'RJavlonbek',
+    description: 'Blog item',
+    filename: 'BlogItem'
 }
 
-export default Loader
+export default BlogItem
