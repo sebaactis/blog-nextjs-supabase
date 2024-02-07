@@ -23,8 +23,6 @@ export function Page() {
             ...post,
             [e.target.name]: e.target.value
         })
-
-        console.log(post)
     }
 
 
