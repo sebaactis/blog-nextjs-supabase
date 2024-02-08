@@ -43,7 +43,7 @@ function AsideBlogDetails({ blogs, setBlogs, id, blog }: Props) {
     }
 
     return (
-        <aside className="max-w-[280px] h-[500px] relative border">
+        <aside className="max-w-[280px] h-[500px] border border-gray-500 relative text-white">
             <img
                 className="rounded-sm h-fit blur-[2px]"
                 alt="nextui logo"
@@ -56,13 +56,12 @@ function AsideBlogDetails({ blogs, setBlogs, id, blog }: Props) {
                 <Link href={`https://github.com/${blog?.users.user_name}`} target='blank'><IconBrandGithub className="border border-black rounded-full w-[40px] h-[40px] p-1 hover:bg-indigo-400 hover:border-indigo-400 transition" /></Link>
             </div>
 
-            <article className="max-w-[300px] border mt-[350px] flex flex-col justify-between mb-5">
+            <article className="max-w-[300px] border border-gray-500 mt-[350px] flex flex-col justify-between mb-5 ">
                 <h3 className="text-center py-5">Other Posts</h3>
-                <Divider />
                 {blogs?.map((blog: Post) => {
                     return (
                         <>
-
+                            <Divider className="bg-gray-500" />
                             <div key={blog.id} className="flex gap-5 items-center py-3 pl-3">
                                 <img
                                     className="rounded-sm"
@@ -78,7 +77,6 @@ function AsideBlogDetails({ blogs, setBlogs, id, blog }: Props) {
                                     <p>{fecha}</p>
                                 </div>
                             </div>
-                            <Divider />
                         </>
                     )
                 })}

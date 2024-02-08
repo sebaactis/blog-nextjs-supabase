@@ -1,15 +1,12 @@
 'use client'
 
 import { type Session, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { GitHubIcon } from '../app/icons'
-import { useRouter } from 'next/navigation'
-import { Button } from '@nextui-org/react'
+import { GitHubIcon, GoogleIcon } from '../app/icons'
 
 const AuthButtonClient = ({ session }: { session: Session | null }) => {
     const supabase = createClientComponentClient()
-    const router = useRouter()
 
-    async function handleSignIn() {
+    async function handleSignInGitHub() {
         await supabase.auth.signInWithOAuth({
             provider: 'github',
             options: {
@@ -18,22 +15,26 @@ const AuthButtonClient = ({ session }: { session: Session | null }) => {
         })
     }
 
-    async function handleSignOut() {
-        await supabase.auth.signOut()
-        router.refresh()
+    async function handleSignInGoogle() {
+        await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: 'http://localhost:3000/auth/callback'
+            }
+        })
     }
 
-    return (
-        <section className="mx-7">
-            {
-                session === null
-                    ? <button onClick={handleSignIn} type="button" className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-4 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 me-2 mb-2">
-                        <GitHubIcon />
-                        Iniciar Sesion con Github
-                    </button>
-                    : <Button className="px-2" onClick={handleSignOut}> Cerrar Sesion </Button>
-            }
 
+    return (
+        <section className="mx-7 flex flex-col">
+            <button onClick={handleSignInGitHub} type="button" className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-md px-5 py-4 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 me-2 mb-2">
+                <GitHubIcon />
+                Iniciar Sesion con Github
+            </button>
+            <button onClick={handleSignInGoogle} type="button" className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-md px-5 py-4 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2">
+                <GoogleIcon />
+                Iniciar Sesion con Google
+            </button>
         </section>
     )
 }

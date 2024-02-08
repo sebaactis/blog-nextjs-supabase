@@ -8,7 +8,7 @@ export async function AuthButtonServer() {
 
     return (
 
-        <section className={` ${session !== null ? '' : 'bg-blue-900 p-40 flex flex-col rounded-r-md'} `}>
+        <section className={` ${session !== null ? '' : 'bg-indigo-800 p-52 flex flex-col rounded-r-md'} `}>
             <AuthButtonClient session={session} />
         </section>
     )

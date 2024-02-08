@@ -51,7 +51,7 @@ export default function Posts() {
     }
     return (
         <>
-            <section className="grid grid-cols-3 gap-20 mt-5">
+            <section className="grid grid-cols-3 gap-20 mt-5 text-white">
                 {posts !== null
                     ? posts.map((post) => (
                         <article className="flex flex-col w-72 gap-2 border border-transparent rounded-lg pb-4 justify-between" key={post.id}>
@@ -95,7 +95,7 @@ export default function Posts() {
             </section >
 
             {totalPages >= 0 && (
-                <div className="gap-4 flex justify-center mb-10">
+                <div className="gap-4 flex justify-center mb-10 text-white">
                     <button onClick={() => { handlePageChange(page - 1) }} disabled={page === 1}>
                         {page === 1 ? <IconCircleArrowLeft className="w-6 h-6" color='#49566c' /> : <IconCircleArrowLeft className="w-6 h-6" />}
                     </button>

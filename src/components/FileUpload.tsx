@@ -33,13 +33,13 @@ const FileUpload = ({ setImageUrl }: { setImageUrl: (url: string) => void }) => 
     }
 
     return (
-        <div className="flex flex-col items-center gap-4 border p-2 rounded-md bg-default-100 border-transparent">
+        <div className="flex flex-col items-center gap-4 border p-4 rounded-md bg-default-100 border-transparent">
             <input type="file" name='imageUrl' onChange={(e) => {
                 if (e.target.files?.length !== 0 && e.target.files !== null) {
                     setFile(e.target.files[0])
                 }
             }} />
-            <button className="border p-2 rounded-lg bg-green-200 hover:bg-green-400 transition font-bold" onClick={handleSubmit}> Subir imagen </button>
+            <button className="p-2 rounded-lg bg-green-200 hover:bg-green-400 transition font-bold" onClick={handleSubmit}> Subir imagen </button>
             <img src={showUrlImage} width={130} height={130} />
         </div>
     )

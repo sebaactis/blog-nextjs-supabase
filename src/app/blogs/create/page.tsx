@@ -63,6 +63,7 @@ export function Page() {
                 label="Titulo"
                 className="max-w-xs"
                 name='title'
+                color='secondary'
                 onChange={handleChange}
             />
             <Input
@@ -71,6 +72,7 @@ export function Page() {
                 label="Categoria"
                 className="max-w-xs"
                 name='category'
+                color='secondary'
                 onChange={handleChange}
             />
             <Textarea
@@ -80,11 +82,12 @@ export function Page() {
                 className="max-w-xs"
                 maxRows={100}
                 name='content'
+                color='secondary'
                 onChange={handleChange}
             />
             <FileUpload setImageUrl={setImageUrl} />
-            <button disabled={post.title === '' || post.category === '' || post.content === '' || imageUrl === ''} className="border p-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 transition font-bold">Crear post</button>
-            <Link href="/"><button className="border p-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 transition font-bold">Volver al inicio</button></Link>
+            <button disabled={post.title === '' || post.category === '' || post.content === '' || imageUrl === ''} className="p-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 transition font-bold">Crear post</button>
+            <Link href="/"><button className="p-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 transition font-bold">Volver al inicio</button></Link>
         </form>
     )
 }

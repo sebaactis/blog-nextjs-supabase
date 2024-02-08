@@ -24,7 +24,7 @@ function BlogDetail({ blog, setBlog, id }: Props) {
         }
 
         fetchBlog()
-    }, [])
+    }, [id])
 
 
     if (blog === null) {
@@ -33,7 +33,7 @@ function BlogDetail({ blog, setBlog, id }: Props) {
         )
     }
     return (
-        <article className="m-auto flex flex-col items-center border rounded-md" >
+        <article className="m-auto flex flex-col items-center rounded-md text-white" >
             <div className="flex flex-col items-center pb-[50px] w-[700px]">
                 <img
                     className="rounded-sm h-fit"
