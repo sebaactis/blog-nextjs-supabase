@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Proyecto de web de blogs con NEXT JS
 
-## Getting Started
+## Tecnologias
 
-First, run the development server:
+- React JS
+- Next JS
+- Supabase
+- Typescript
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Explicacion del proyecto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+El proyecto consiste en una pagina donde uno puede loguearse a traves de Github o Google, y acceder a una web de blogs.
+Puede crear un blog propio o leer blogs de otras personas.
+La idea del proyecto es utilizar con una idea propia el framework Next JS.
+Se utilizaron diferentes tecnicas:
+- App-router de Next para el manejo de rutas
+- Manejo de componentes de servidor (Server Side Rendering) y componentes de clientes.
+- Supabase como base de datos (creacion de tablas, autenticacion y registro, triggers)
+- Tailwind CSS y Next UI para los estilos
+- Cloudinary para el manejo y subida de archivos
+- Typescript para el tipado del proyecto
+  
